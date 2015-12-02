@@ -1,0 +1,28 @@
+{
+  "name": "promised-util",
+  "version": "0.0.1",
+  "description": "utils to work with promises",
+  "main": "index.js",
+  "devDependencies": {
+    "mocha": "^2.3.4",
+    "chai": "^3.4.1",
+    "chai-as-promised": "^5.1.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "zf",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zweifisch/promised-util.git"
+  },
+  "keywords": [
+    "promise",
+    "util"
+  ],
+  "bugs": {
+    "url": "https://github.com/zweifisch/promised-util/issues"
+  },
+  "homepage": "https://github.com/zweifisch/promised-util#readme"
+}

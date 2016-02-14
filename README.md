@@ -42,6 +42,12 @@ map/filter/reduce/some/every/find
 Promise.resolve([1, 2]).then(some(x => x > 1));
 ```
 
+pipe
+
+```js
+pipe([1, 2], map(x => x * x), filter(x => x > 1));
+```
+
 run sequentially
 
 ```js

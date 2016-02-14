@@ -11,6 +11,7 @@ var sleep = require("./index").sleep;
 var timeout = require("./index").timeout;
 var promisify = require("./index").promisify;
 var map = require("./index").map;
+var reduce = require("./index").reduce;
 var run = require("./index").run;
 var tee = require("./index").tee;
 var pipe = require("./index").pipe;
@@ -124,4 +125,7 @@ describe("pipe", ()=> {
 
     it("should abort on error", ()=>
        pipe(2, function(){throw Error("rorrE");}, x => x + x).should.be.rejected);
+
+    it("should work with other utils nicely", ()=>
+       pipe([1,2,3], map(x => x + 1), reduce((a,b)=> a + b)).should.eventually.equal(9));
 });

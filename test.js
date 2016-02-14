@@ -12,6 +12,8 @@ var timeout = require("./index").timeout;
 var promisify = require("./index").promisify;
 var map = require("./index").map;
 var run = require("./index").run;
+var tee = require("./index").tee;
+var pipe = require("./index").pipe;
 
 describe("postpone", ()=> {
 
@@ -109,4 +111,17 @@ describe("run", ()=> {
            yield Promise.resolve("thing");
            let b = yield undefined;
        }).should.be.rejected);
+});
+
+
+describe("pipe", ()=> {
+
+    it("should pipe plain value", ()=>
+       pipe(2, (x)=> x + x, (x)=> x * x).should.eventually.equal(16));
+
+    it("should pipe promise", ()=>
+       pipe(Promise.resolve(3), x => x + x, x => x * x).should.eventually.equal(36));
+
+    it("should abort on error", ()=>
+       pipe(2, function(){throw Error("rorrE");}, x => x + x).should.be.rejected);
 });

@@ -4,11 +4,13 @@
 [![Build Status][travis-image]][travis-url]
 
 - promisify: make callback style functions returns promises
-- timeout: set timeout on promise
-- postpone: postpone a give promise
+- timeout: set timeout on a promise
+- postpone: postpone a given promise
 - map/filter/reduce/some/every/find: easier array manipulation
 - run: async/await from future
-- sleep: create promise that will resolve in given time
+- sleep: create a promise that will resolve in given time
+- pipe: pipe a promise through a series of functions
+- tee: observe a promise without altering it
 
 ## usage
 

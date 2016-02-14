@@ -35,7 +35,7 @@ exports.timeout = function(msecs, promise) {
     return new Promise(function(resolve, reject){
         let timer = setTimeout(function() {
             timer = null;
-            reject(new Error(`Timeout after ${msecs}`));
+            reject(new Error(`Timed out after ${msecs} milliseconds`));
         }, msecs);
         promise.then(function(result) {
             if (timer) {
@@ -49,6 +49,24 @@ exports.timeout = function(msecs, promise) {
             }
         });
     });
+};
+
+
+exports.tee = function(fn) {
+    return function(value) {
+        fn(value);
+        return value;
+    };
+};
+
+
+exports.pipe = function(initial) {
+    let promise = Promise.resolve(initial);
+    let fns = Array.prototype.slice.call(arguments,1);
+    for (let fn of fns) {
+        promise = promise.then(fn);
+    }
+    return promise;
 };
 
 

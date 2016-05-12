@@ -24,6 +24,21 @@ exports.postpone = function(msecs) {
 };
 
 
+exports.race = function(promises) {
+    let count = promises.length;
+    return new Promise(function(resolve, reject) {
+        promises.forEach(function(p) {
+            p.then(resolve, function(err) {
+                count -= 1;
+                if (count === 0) {
+                    reject(err);
+                }
+            });
+        });
+    });
+};
+
+
 exports.sleep = function(mescs) {
     return new Promise(function(resolve) {
         setTimeout(resolve, mescs);

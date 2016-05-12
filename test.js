@@ -15,6 +15,7 @@ var reduce = require("./index").reduce;
 var run = require("./index").run;
 var tee = require("./index").tee;
 var pipe = require("./index").pipe;
+var race = require("./index").race;
 
 describe("postpone", ()=> {
 
@@ -26,6 +27,15 @@ describe("sleep", ()=> {
 
     it("should sleep", ()=>
        sleep(10).should.become(undefined));
+});
+
+describe("race", ()=> {
+
+    it("should ignore rejected promise", ()=>
+       race([Promise.reject(Error("a")), Promise.resolve("b")]).should.become("b"));
+
+    it("should reject", ()=>
+       race([Promise.reject(Error("a")), Promise.reject(Error("b"))]).should.be.rejected);
 });
 
 describe("timeout", ()=> {

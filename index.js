@@ -39,9 +39,10 @@ exports.race = function(promises) {
 };
 
 
-exports.sleep = function(mescs) {
+exports.sleep = function(min, max) {
+    if (max) min = min + (max - min) * Math.random();
     return new Promise(function(resolve) {
-        setTimeout(resolve, mescs);
+        setTimeout(resolve, min);
     });
 };
 

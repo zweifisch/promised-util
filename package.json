@@ -1,6 +1,6 @@
 {
   "name": "promised-util",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "utils to work with promises",
   "main": "index.js",
   "devDependencies": {

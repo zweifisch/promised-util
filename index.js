@@ -31,6 +31,13 @@ const tee = fn => value => {
 
 const pipe = (initial, ...fns) => fns.reduce((a, b) => a.then(b), Promise.resolve(initial))
 
+
+const just = val => () => val
+const justTrue = just(true)
+const justFalse = just(false)
+const fulfilled = promise => promise.then(justTrue, justFalse)
+const rejected = promise => promise.then(justFalse, justTrue)
+
 module.exports = {
-    postpone, sleep, timeout, tee, pipe, TimeoutError
+    postpone, sleep, timeout, tee, pipe, TimeoutError, fulfilled, rejected
 }

@@ -15,8 +15,8 @@ postpone
 
 ```js
 const {postpone} = require('promised-util')
-promise.then(postpone(10000)).then(result =>
-    console.log("10 secs postponed"))
+Promise.resolve('val').then(postpone(1000)).then(result =>
+    console.log(`${result} one second later`))
 ```
 
 sleep
@@ -40,7 +40,16 @@ pipe
 
 ```js
 const {pipe} = require('promised-util')
-pipe([1, 2], xs => xs.map(x => x * x), xs => xs.filter(x => x > 1))
+pipe(Promsie.resolve([1, 2]), xs => xs.map(x => x * x), xs => xs.filter(x => x > 1))
+pipe(Promsie.reject('err'), xs => xs.map(x => x * x), xs => xs.filter(x => x > 1))
+```
+
+fulfilled/rejected
+
+```js
+const {fulfilled, rejected} = require('promised-util')
+await fulfilled(Promise.resolve(null))  // true
+await rejected(Promise.reject(null))  // true
 ```
 
 [npm-image]: https://img.shields.io/npm/v/promised-util.svg?style=flat

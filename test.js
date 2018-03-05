@@ -9,7 +9,9 @@ const {
     sleep,
     timeout,
     tee,
-    pipe
+    pipe,
+    fulfilled,
+    rejected,
 } = require("./index")
 
 describe("postpone", ()=> {
@@ -49,4 +51,20 @@ describe("pipe", ()=> {
 
     it("should abort on error", ()=>
        pipe(2, () => {throw Error("rorrE")}, x => x + x).should.be.rejected)
+})
+
+describe('fulfilled', ()=> {
+    it('should return true', ()=>
+       fulfilled(Promise.resolve(false)).should.eventually.equal(true))
+
+    it('should return false', ()=>
+       fulfilled(Promise.reject(null)).should.eventually.equal(false))
+})
+
+describe('rejected', ()=> {
+    it('should return true', ()=>
+       rejected(Promise.reject(false)).should.eventually.equal(true))
+
+    it('should return false', ()=>
+       rejected(Promise.resolve(null)).should.eventually.equal(false))
 })
